@@ -11,6 +11,15 @@ class TriviaService {
         let questions = res.data.results.map(q => new Trivia(q))
         ProxyState.questions = questions
     }
+
+    isCorrect(id, a) {
+        let foundQuestion = ProxyState.questions.find(t => t.id == id)
+        if (foundQuestion.correctAnswer == a) {
+            ProxyState.correct++
+        } else {
+            ProxyState.incorrect++
+        }
+    }
 }
 
 export const triviaService = new TriviaService();
